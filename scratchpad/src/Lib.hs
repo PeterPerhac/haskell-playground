@@ -1,9 +1,7 @@
 module Lib (fibs) where
 
-import Data.List
+import Data.List (unfoldr)
 
--- using `unfoldr` to generate a Fibonacci sequence
-fibs :: IO ()
-fibs = putStrLn . intercalate ", " . take 100 . map show $ unfoldr fibfu (1, 0)
-  where fibfu (n1, n2) = Just (n1 + n2, (n2, n1 + n2))
-
+-- `unfoldr` to generate Fibonacci sequence
+fibs :: [Int]
+fibs = let f (n1, n2) = Just (n1 + n2, (n2, n1 + n2)) in unfoldr f (1, 0)
